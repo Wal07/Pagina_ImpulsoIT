@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulso IT Solutions | Consultoría Tecnológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 1rem;
+            background-color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services */
+        .services {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-content ul {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+        
+        .service-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact */
+        .contact {
+            background-color: var(--light);
+            padding: 4rem 1rem;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            padding: 1rem;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* CTA */
+        .cta {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav a {
+                margin: 0.5rem 0;
+                display: block;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="Logo-Photoroom.png" alt="Impulso IT Solutions">
+            <div class="logo-text">
+                IMPULSO IT SOLUTIONS
+                <span>Hacemos que la tecnología trabaje para tu negocio</span>
+            </div>
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <h1>Soluciones IT para tu negocio</h1>
+        <p>Seguridad, conectividad y confianza. Impulsamos tu empresa con tecnología a medida.</p>
+        <a href="#contacto" class="btn">Contáctanos</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>¿Quiénes somos?</h2>
+                <p>Impulso IT Solutions nace con la misión de acompañar a empresas, emprendimientos, comercios y municipios a mejorar su infraestructura tecnológica, asegurando un entorno digital seguro, confiable y eficiente.</p>
+                <p>Contamos con más de 15 años de experiencia en soporte técnico para empresas del rubro hotelero y de entretenimiento, y estamos en constante formación en ciberseguridad y nuevas tecnologías.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Equipo de trabajo IT">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="servicios">
+        <div class="section-title">
+            <h2>Nuestros Servicios</h2>
+        </div>
+        <div class="services-grid">
+            <!-- Servicio 1 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Mantenimiento de Equipos Informáticos</h3>
+                    <ul>
+                        <li>Diagnóstico y reparación de PCs y notebooks</li>
+                        <li>Limpieza física y lógica</li>
+                        <li>Formateo e instalación de software</li>
+                        <li>Actualización de hardware y software</li>
+                        <li>Asistencia técnica remota rápida y segura</li>
+                    </ul>
+                    <p>Previene fallas que afectan la operatividad, evita gastos innecesarios en repuestos y reduce el riesgo de interrupciones que generan pérdida de tiempo y dinero.</p>
+                </div>
+            </div>
+            
+            <!-- Servicio 2 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Redes y Conectividad</h3>
+                    <ul>
+                        <li>Instalación de redes cableadas e inalámbricas</li>
+                        <li>Configuración de routers y switches</li>
+                        <li>Optimización de redes existentes</li>
+                        <li>Segmentación de redes (clientes / administración)</li>
+                    </ul>
+                    <p>Una red bien diseñada garantiza velocidad, seguridad y una experiencia fluida para tus empleados y clientes.</p>
+                </div>
+            </div>
+            
+            <!-- Servicio 3 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Seguridad Informática y Backups</h3>
+                    <ul>
+                        <li>Configuración de backups automáticos (locales y en la nube)</li>
+                        <li>Protección ante pérdida de datos y ransomware</li>
+                        <li>Asesoramiento en buenas prácticas de seguridad</li>
+                        <li>Antivirus y protección contra amenazas</li>
+                    </ul>
+                    <p>Cuidamos tu información, el activo más valioso de tu empresa.</p>
+                </div>
+            </div>
+            
+            <!-- Servicio 4 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Dominio propio + Correo corporativo</h3>
+                    <ul>
+                        <li>Registro y gestión de dominio propio (.com.ar y otros)</li>
+                        <li>Creación de correos personalizados con Zoho Mail</li>
+                        <li>Configuración con DNS y servicios como Cloudflare</li>
+                        <li>Integración con dispositivos móviles y PCs</li>
+                    </ul>
+                    <p>Proyectá profesionalismo desde el primer contacto con tus clientes.</p>
+                </div>
+            </div>
+            
+            <!-- Servicio 5 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Asesoramiento en compra de equipos</h3>
+                    <ul>
+                        <li>Equipamiento inicial para negocios nuevos</li>
+                        <li>Asesoramiento en actualización de equipos</li>
+                    </ul>
+                    <p>Ahorro de tiempo y recursos con equipos configurados a medida.</p>
+                </div>
+            </div>
+            
+            <!-- Servicio 6 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Servicios a medida y consultoría</h3>
+                    <ul>
+                        <li>Asesoramiento en transformación digital</li>
+                        <li>Alianzas con profesionales en programación, redes, servidores, community manager y diseño</li>
+                        <li>Proyectos llave en mano con soporte continuo</li>
+                    </ul>
+                    <p>Tu negocio evoluciona con soluciones integrales y escalables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contacto">
+        <div class="section-title">
+            <h2>Contacto</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>¿Cómo podemos ayudarte?</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Ubicación</h4>
+                        <p>Merlo San Luis, Argentina</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4>Teléfono</h4>
+                        <p>2664 268611</p>
+                        <p>2664 301052</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>walter.giacone@impulsoit.net.ar</p>
+                        <p>david.urquiza@impulsoit.net.ar</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4>Horario</h4>
+                        <p>Lunes a Viernes: 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/walter.giacone@impulsoit.net.ar" method="POST">
+                    <!-- Campos ocultos para FormSubmit -->
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio web">
+                    <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_template" value="table">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="servicio">Servicio de interés</label>
+                        <select id="servicio" name="servicio" class="form-control">
+                            <option value="">Seleccione un servicio</option>
+                            <option value="mantenimiento">Mantenimiento de Equipos</option>
+                            <option value="redes">Redes y Conectividad</option>
+                            <option value="seguridad">Seguridad Informática</option>
+                            <option value="dominios">Dominios y Correo</option>
+                            <option value="equipos">Asesoramiento en Equipos</option>
+                            <option value="consultoria">Consultoría IT</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>¿Listo para impulsar tu negocio con tecnología?</h2>
+        <p>Consulta por nuestros planes a medida</p>
+        <a href="#contacto" class="btn">Solicitar Presupuesto</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Impulso IT Solutions</h3>
+                <p>Hacemos que la tecnología trabaje para tu negocio.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/542664268611?text=Hola%20Impulso%20IT,%20quisiera%20más%20información..." target="_blank" aria-label="Contactar por WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Seguir en Instagram" style="pointer-events: none; opacity: 0.5;" title="Próximamente">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#servicios">Mantenimiento de Equipos</a></li>
+                    <li><a href="#servicios">Redes y Conectividad</a></li>
+                    <li><a href="#servicios">Seguridad Informática</a></li>
+                    <li><a href="#servicios">Dominios y Correo</a></li>
+                    <li><a href="#servicios">Consultoría IT</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Impulso IT Solutions. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
